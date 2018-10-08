@@ -11,7 +11,7 @@ function getProfile (username) {
         });
 }
 
-functino getRepos (username) {
+function getRepos (username) {
     return axios.get('https://api.github.com/users/' + username + '/repos' + params + '#per_page=100');
 }
 
@@ -28,7 +28,7 @@ function calculateScore (profile, repos) {
     return (followers * 3) + totalStars;
 }
 
-functino handleError (error) {
+function handleError (error) {
     console.warn(error);
     return null;
 }
