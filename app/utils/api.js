@@ -1,18 +1,27 @@
 var axios = require('axios');
 
-var id = 'YOUR_CLIENT_ID';
-var sec = 'YOUR_SECRET_ID';
-var params = '?client_id=' + id + '&client_secret=' + sec;
+var username = 'CHANGEME';
+var token = 'CHANGEME';
 
 function getProfile (username) {
-    return axios.get('https://api.github.com/users/' + username + params)
-        .then(function (user) {
+    return axios.get('https://api.github.com/users/' + username, {
+        auth: {
+            username: username,
+            password: token
+        }
+    }).then(function (user) {
             return user.data;
         });
 }
 
 function getRepos (username) {
-    return axios.get('https://api.github.com/users/' + username + '/repos' + params + '#per_page=100');
+    return axios.get('https://api.github.com/users/' + username + '/repos' + '#per_page=100',
+        {
+            auth: {
+                username: username,
+                password: token
+            }
+        });
 }
 
 function getStarCount (repos) {
